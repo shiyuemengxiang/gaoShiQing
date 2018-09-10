@@ -1,0 +1,99 @@
+*{
+    padding:0;
+    margin:0;
+}
+.header {
+    height:50px;
+    min-width:1200px;
+    line-height: 50px;
+    background:	#00BFFF;
+    text-align: center;
+    color:#DC143C;
+}
+.header h3{
+    font-weight: 500;
+}
+.navtitle {
+    margin-top: 45px;
+    font-size:18px;
+    color:#888;
+    text-align:center;
+}
+/*清单列表区域*/
+.con{
+    min-width:1200px;
+    height: auto;
+    display: block;
+    margin:10px auto;
+}
+.con input,textarea{
+    display: block;
+    margin: 10px auto;
+    padding:5px 5px;
+    width: 800px;
+    border:3px solid rgba(0,0,0,.1);
+    background-color:rgba(0,0,0,.02);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height:10px;
+
+}
+textarea{
+    height: 180px;
+}
+.con input[type='submit']{
+    width:80px;
+    height: 35px;
+}
+.con .task-list .warp{
+
+/*border: 1px solid red;*/
+    max-width: 800px;
+    margin:5px auto;
+}
+/*radius圆标志*/
+.radius{
+	display: inline-block;
+	border-radius:50%;
+	width:35px;
+	height:35px;
+	margin:5px 0;
+	position: relative;
+	top: 15px;
+}
+/*//待办事项*/
+.item .radius{
+	border:1px solid deepskyblue;
+	background: deepskyblue;
+}
+/*已完成事项*/
+.complete.item .radius{
+	border:1px solid #ccc;
+	background: #ccc;
+}
+.item{
+	height:75px;
+	/*border: 1px solid orange;*/
+}
+.item button{
+	 /*display: block;*/
+    margin: 10px auto;
+    padding:5px 5px;
+    border:3px solid rgba(0,0,0,.1);
+    background-color:rgba(0,0,0,.02);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height:35px;
+    
+}
+
+/*待选菜单滑过效果*/
+.hover{
+
+	display:none;
+}
+.item:hover .hover{
+	display: inline;
+}

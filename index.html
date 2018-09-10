@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搞事情----一个Vue构建的简单备忘录</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+<div id="main">
+    <div class="header">
+        <h3>搞事情,一个Vue构建的简单备忘录</h3>
+    </div>
+    <div class="navtitle">今天,你的事情搞完了吗?</div>
+    <div class="con">
+        <form class="task-form" @submit.prevent="merge">
+            <input type="text" v-model="current.title" id="task-input"  placeholder="你今天要搞什么事情?" autocomplete="off">
+            <br>
+            <div class="detail" v-if="current.id">
+                <textarea v-model="current.desc" name="desc" placeholder="请添加任务描述~~~"></textarea>
+                <input v-model="current.alert_at" type="datetime-local">
+            </div>
+            <input type="submit">
+        </form>
+        <div class="task-list">
+            <div class="warp">
+                <h3 style="color:#666;font-size:18px;font-weight: 500;">未完成</h3>
+                <h3 v-if="list.completed==false">暂无未完成任务,赶紧提交一个吧!</h3>
+
+                <task :todo="todo"  :key="index" v-if="!todo.completed"  v-for="(todo,index) in list"></task>
+
+            </div>
+        </div>
+        <div class="task-list">
+            <div class="warp">
+                <h3 style="margin-top:15px;color:green;font-size:18px;font-weight: 500">已完成</h3>
+                <h3 v-if="false">暂无已完成任务,赶快完成任务或者新建任务吧</h3>
+                <div class="complete item" v-for="todo in list" v-if="todo.completed">
+                        <!--<s>已完成的事件</s>-->
+                  <s style="color:green;font-size: 18px;" > </s><span class=radius></span> {{todo.title || "暂无已完成任务,赶快完成任务或者新建任务吧"}}  </s> 
+                  <div class="hover">
+                  	<button @click="toggle_complete(todo.id)"><i class="fa fa-close fa-lg"></i></button>  
+                  	<button @click="remove(todo.id)"><i class="fa fa-trash-o fa-lg"></i></button>  
+                  </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<template id="task_tpl">
+    <div class="item"  style="color:red;font-size:18px">
+       <span class=radius></span>
+       {{todo.title || "暂无未完成任务,赶紧提交一个吧!" }}
+       	<div class="hover">
+       	
+        <button @click="action('set_current',todo)"><i class="fa fa-lg fa-pencil"></i></button>
+        <button @click="action('toggle_complete',todo.id)"><i class="fa fa-lg fa-check"></i></button>
+        <button @click="action('toogle_detail',todo.id)"><i class="fa fa-lg fa-align-justify"></i></button>
+        <button @click="action('remove',todo.id)"><i class="fa fa-trash-o fa-lg"></i></button>
+        <div style="font-size:13px;color:#666;float:right;">添加时间:{{todo.date}}</div>
+    	<div v-if="todo.show_detail" class="detail">
+    		{{todo.desc || "暂无详情描述"}}
+    	</div>
+       	</div>
+	</div>
+</template>
+<script src="lib/jquery-3.2.1.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+<script src="js/myStorage.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
